@@ -35,7 +35,7 @@ function SecondForm({
                 <button id="saveRoute">保存する</button>
             </fieldset>
         </form>
-    )
+    );
 }
 
 export default SecondForm;

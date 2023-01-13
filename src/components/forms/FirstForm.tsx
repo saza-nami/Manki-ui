@@ -41,7 +41,7 @@ function FirstForm({
                 <button id="fetchRoute">呼び出す</button>
             </fieldset>
         </form>
-    )
+    );
 }
 
 export default FirstForm;
