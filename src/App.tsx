@@ -1,8 +1,11 @@
+import React from 'react';
 import Main from 'Main';
 
 function App() {
+  const [phase, setPhase] = React.useState<string>('1');
+
   return (
-    <Main />
+    <Main phase={phase} setPhase={setPhase}/>
   );
 }
 

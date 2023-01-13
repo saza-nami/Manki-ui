@@ -1,6 +1,17 @@
+import React from 'react';
 import './forms.css';
 
-function FirstForm() {
+interface Props {
+    setPhase: React.Dispatch<React.SetStateAction<string>>,
+};
+
+function FirstForm({
+    setPhase,
+}: Props) {
+    function generateRoute() {
+        setPhase('2');
+    }
+    
     return (
         <form id="firstForm" className="the-form" onSubmit={(e) => e.preventDefault()}>
             <fieldset>
@@ -13,7 +24,7 @@ function FirstForm() {
                     <input type="radio" name="mode" value="thru" />
                     中継点
                 </label>
-                <button id="generateRoute">経路探索</button>
+                <button id="generateRoute" onClick={generateRoute}>経路探索</button>
                 <label>
                     <input type="checkbox" id="patrol" value="patrol" />
                     巡回経路
