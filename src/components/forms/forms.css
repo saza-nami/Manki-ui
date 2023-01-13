@@ -1,0 +1,11 @@
+.the-form {
+    display: flex;
+}
+
+.the-form > * {
+    flex: 1 0;
+}
+
+.the-form > *:nth-child(3) {
+    flex: 2 0;
+}
