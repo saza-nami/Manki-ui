@@ -2,7 +2,7 @@ import './forms.css';
 
 function SecondForm() {
     return (
-        <form id="secondForm" className="the-form" onSubmit={() => false}>
+        <form id="secondForm" className="the-form" onSubmit={(e) => e.preventDefault()}>
             <fieldset>
                 <legend>やっぱりやめる</legend>
                 <button id="editRoute">経路を再編集する</button>

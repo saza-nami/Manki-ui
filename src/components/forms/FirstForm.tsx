@@ -2,7 +2,7 @@ import './forms.css';
 
 function FirstForm() {
     return (
-        <form id="firstForm" className="the-form" onSubmit={() => false}>
+        <form id="firstForm" className="the-form" onSubmit={(e) => e.preventDefault()}>
             <fieldset>
                 <legend>新規ルート作成</legend>
                 <label>
