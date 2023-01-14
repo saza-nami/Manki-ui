@@ -24,6 +24,7 @@ export type UserId = GeneralId;
  */
 export interface CreateUserResult extends ApiResult {
   userId?: UserId;
+  reason?: string,
 }
 
 /**

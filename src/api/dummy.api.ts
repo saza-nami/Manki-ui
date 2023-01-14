@@ -23,6 +23,7 @@ export async function createUser() {
   const result: ApiTypes.CreateUserResult = isFailed(0.1)
     ? {
         succeeded: false,
+        reason: 'something wrong',
       }
     : {
         succeeded: true,
