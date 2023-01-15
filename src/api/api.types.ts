@@ -5,6 +5,7 @@
  */
 interface ApiResult {
   succeeded: boolean;
+  reason?: string;
 }
 
 /**
@@ -22,7 +23,6 @@ export type UserId = GeneralId;
  */
 export interface CreateUserResult extends ApiResult {
   userId?: UserId;
-  reason?: string,
 }
 
 /**
@@ -120,7 +120,6 @@ export interface AstarArg {
  */
 export interface AstarResult extends ApiResult {
   route?: Position[];
-  reason?: string;
 }
 
 /**
@@ -135,7 +134,7 @@ export interface ExecRouteArg {
  * ExecRoute の戻り値の型
  */
 export interface ExecRouteResult extends ApiResult {
-  message?: string;
+  /* Nothing yet */
 }
 
 /**
@@ -152,7 +151,6 @@ export interface SaveRouteArg {
  */
 export interface SaveRouteResult extends ApiResult {
   routeName?: string;
-  message?: string;
 }
 
 /**

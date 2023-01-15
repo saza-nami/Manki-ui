@@ -23,7 +23,7 @@ export async function createUser() {
   const result: ApiTypes.CreateUserResult = isFailed(0.1)
     ? {
         succeeded: false,
-        reason: 'something wrong',
+        reason: "something wrong",
       }
     : {
         succeeded: true,
@@ -47,6 +47,7 @@ export async function terminate(userId: ApiTypes.UserId) {
     isFailed(0.1) || !userId
       ? {
           succeeded: false,
+          reason: "something wrong",
         }
       : {
           succeeded: true,
@@ -69,6 +70,7 @@ export async function endRoute(userId: ApiTypes.UserId) {
     isFailed(0.1) || !userId
       ? {
           succeeded: false,
+          reason: "something wrong",
         }
       : {
           succeeded: true,
@@ -91,6 +93,7 @@ export async function proceedRoute(userId: ApiTypes.UserId) {
     isFailed(0.1) || !userId
       ? {
           succeeded: false,
+          reason: "something wrong",
         }
       : {
           succeeded: true,
@@ -113,6 +116,7 @@ export async function isAcceptable(userId: ApiTypes.UserId) {
     isFailed(0.1) || !userId
       ? {
           succeeded: false,
+          reason: "something wrong",
         }
       : {
           succeeded: true,
@@ -135,6 +139,7 @@ export function routeName(userId: ApiTypes.UserId) {
     isFailed(0.1) || !userId
       ? {
           succeeded: false,
+          reason: "something wrong",
         }
       : {
           succeeded: true,
@@ -169,6 +174,7 @@ export function reqRoute(userId: ApiTypes.UserId, args: ApiTypes.ReqRouteArg) {
     isFailed(0.1) || !userId || args.routeName !== "ゆめ咲線直通桜島行き"
       ? {
           succeeded: false,
+          reason: "something wrong",
         }
       : {
           succeeded: true,
@@ -278,6 +284,7 @@ export function reqPassable(userId: ApiTypes.UserId) {
     isFailed(0.1) || !userId
       ? {
           succeeded: false,
+          reason: "something wrong",
         }
       : {
           succeeded: true,
@@ -577,7 +584,7 @@ export function execRoute(
     isFailed(0.1) || !userId || !args.data
       ? {
           succeeded: false,
-          message: "something wrong",
+          reason: "something wrong",
         }
       : {
           succeeded: true,
@@ -605,7 +612,7 @@ export function saveRoute(
     isFailed(0.1) || !userId || !args.data
       ? {
           succeeded: false,
-          message: "something wrong",
+          reason: "something wrong",
         }
       : {
           succeeded: true,
@@ -622,6 +629,7 @@ export function monitorCar(userId: ApiTypes.UserId) {
     isFailed(0.1) || !userId
       ? {
           succeeded: false,
+          reason: "something wrong",
         }
       : {
           succeeded: true,
