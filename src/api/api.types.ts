@@ -1,7 +1,5 @@
 /** @module ApiTypes */
 
-import path from "path";
-
 /**
  * API の戻り値の原始型
  */
