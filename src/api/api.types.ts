@@ -85,6 +85,16 @@ export interface Position {
 }
 
 /**
+ * ルート（停留所-停留所の道程）を表すための型
+ */
+export type SubRoute = Position[];
+
+/**
+ * 経路を表すための型
+ */
+export type Route = SubRoute[];
+
+/**
  * reqRoute のパラメータの型
  */
 export interface ReqRouteArg {
@@ -97,7 +107,7 @@ export interface ReqRouteArg {
  */
 export interface ReqRouteResult extends ApiResult {
   /** 経路 */
-  route?: Position[][];
+  route?: Route;
   /** 経路に含まれる停留所のリスト */
   dest?: Position[];
   /** 巡回経路のとき真 */
@@ -137,7 +147,7 @@ export interface AstarArg {
  */
 export interface AstarResult extends ApiResult {
   /** 生成されたルート */
-  route?: Position[];
+  route?: SubRoute;
 }
 
 /**
@@ -145,7 +155,7 @@ export interface AstarResult extends ApiResult {
  */
 export interface ExecRouteArg {
   /** 実行する経路 */
-  data: Position[][];
+  data: Route;
   /** 巡回経路のとき真 */
   junkai: boolean;
 }
@@ -164,7 +174,7 @@ export interface SaveRouteArg {
   /** 経路の名前 */
   routeName: string;
   /** 保存する経路 */
-  data: Position[][];
+  data: Route;
   /** 巡回経路のとき真 */
   junkai: boolean;
 }
@@ -184,7 +194,7 @@ export interface MonitorCarResult extends ApiResult {
   /** 車の割り当てがあるときに真 */
   reserve?: boolean;
   /** 実行している経路 */
-  route?: Position[][];
+  route?: Route;
   /** 実行している経路に含まれる停留所のリスト */
   dest?: Position[];
   /** 停留所で停まっているときに真 */
