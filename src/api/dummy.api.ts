@@ -143,7 +143,7 @@ export function routeName(userId: ApiTypes.UserId) {
         }
       : {
           succeeded: true,
-          passableRoute: [
+          passableName: [
             {
               routeName: "ゆめ咲線直通桜島行き",
               available: true,

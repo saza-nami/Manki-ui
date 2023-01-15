@@ -65,7 +65,7 @@ export interface PassableName {
  * routeName の戻り値の型
  */
 export interface RouteNameResult extends ApiResult {
-  passableRoute?: PassableName[];
+  passableName?: PassableName[];
 }
 
 /**
