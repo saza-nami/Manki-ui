@@ -17,7 +17,7 @@ export async function createUser() {
                     return new Error('API 呼び出しの回数制限を超えました。');
                 case 'User creation failed.':
                     return new Error('API サーバでエラーが発生しました。');
-                case 'Users exceeded the limit':
+                case 'Users exceeded the limit.':
                     return new Error('システムが満員状態です。');
                 default:
                     return new Error('API の呼び出しに失敗しました。');
