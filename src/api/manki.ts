@@ -2,6 +2,8 @@
 
 import * as Api from './api';
 
+export type { UserId } from './api';
+
 /**
  * 新しいユーザ識別子を発行する。
  * 
