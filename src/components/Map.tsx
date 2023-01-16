@@ -1,10 +1,17 @@
 import * as ReactLeaflet  from "react-leaflet";
+import L from 'leaflet';
 import 'leaflet/dist/leaflet.css';
 import './Map.css';
 
-function Map() {
+interface Props {
+    mapRef: React.MutableRefObject<L.Map>,
+};
+
+function Map({
+    mapRef,
+}: Props) {
     return (
-        <ReactLeaflet.MapContainer center={[35,138]} zoom={12}> {/* XXX */}
+        <ReactLeaflet.MapContainer center={[35,138]} zoom={12} ref={mapRef}> {/* XXX */}
             <ReactLeaflet.TileLayer
                 attribution="<a href='https://maps.gsi.go.jp/development/ichiran.html'>地理院タイル</a>"
                 url="https://cyberjapandata.gsi.go.jp/xyz/pale/{z}/{x}/{y}.png"
