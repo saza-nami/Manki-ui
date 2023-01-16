@@ -16,7 +16,7 @@ function App() {
     if (userId instanceof Error) {
       Swal.disableButtons();
       Swal.fire({
-        titleText: 'エラーが発生しました',
+        titleText: 'ユーザー識別子の発行に失敗しました',
         text: userId.message + '続行するにはリロードしてください。',
         icon: 'error',
         allowOutsideClick: false,
