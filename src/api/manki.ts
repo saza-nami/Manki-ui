@@ -177,7 +177,7 @@ export async function routeName(userId: Api.UserId) {
     }
 }
 
-export type { Route, SubRoute } from './api';
+export type { Route, SubRoute, Position } from './api';
 
 /**
  * reqRoute が返す保存済み経路情報の型
