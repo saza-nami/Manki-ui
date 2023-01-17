@@ -219,7 +219,7 @@ export async function reqRoute(userId: Api.UserId, routeName: string) {
             junkai: result.junkai as boolean,
         } as routeInfo;
     } catch (err) {
-        console.error('reqPassable:', err);
+        console.error('reqRoute:', err);
         return new Error('API サーバとの通信に失敗しました。');
     }
 }
@@ -349,8 +349,8 @@ export async function saveRoute(
     junkai: boolean
 ) {
     try {
-        const result = await Api.execRoute(userId,
-            { routeName, data: route, junkai } as Api.ExecRouteArg);
+        const result = await Api.saveRoute(userId,
+            { routeName, data: route, junkai } as Api.SaveRouteArg);
         if (!result.succeeded) {
             const reason = result.reason?.replace(/\..*/, '.'); // 最初の一文で分岐
             switch (reason) {
@@ -364,9 +364,9 @@ export async function saveRoute(
                     return new Error('API の呼び出しに失敗しました。');
             }
         }
-        return true;    // NOTE: API の返り値j（経路名のオウム返し）は誰も幸せにしないので棄てる
+        return true;    // NOTE: API の返り値（経路名のオウム返し）は誰も幸せにしないので棄てる
     } catch (err) {
-        console.error('execRoute:', err);
+        console.error('saveRoute:', err);
         return new Error('API サーバとの通信に失敗しました。');
     }
 }
@@ -435,7 +435,7 @@ export async function carStat(userId: Api.UserId) {
             };
         return ret;
     } catch (err) {
-        console.error('execRoute:', err);
+        console.error('carStat:', err);
         return new Error('API サーバとの通信に失敗しました。');
     }
 }
