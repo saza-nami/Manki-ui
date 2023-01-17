@@ -105,6 +105,7 @@ function FirstForm({
         next(routeInfo.route);
     }
 
+    // generateIcon の引数を生成する愚かな処理
     function iconArgs(type: string) {
         return [
             type === 'stop' ? 'blue' : 'red',
@@ -113,6 +114,7 @@ function FirstForm({
         ];
     }
 
+    // ピンをクリックしたときのハンドラ (ピンを削除する)
     async function removePoint(e: L.LeafletMouseEvent) {
         const result = await Swal.fire({
             titleText: '確認',
@@ -189,6 +191,7 @@ function FirstForm({
         }
     }
 
+    // 経路探索ボタンをクリックしたときのハンドラ
     async function searchRoute() {
         if (routePoints.length === 0) {
             Swal.fire({
