@@ -2,10 +2,16 @@ import React from 'react';
 import * as App from 'App';
 import * as Main from 'Main';
 import Swal from 'sweetalert2';
-import L, { point } from 'leaflet';
+import L from 'leaflet';
 import * as Manki from 'api/manki';
 import generateIcon from 'util/icon';
 import './forms.css';
+import * as Form from 'components/Form';
+
+export interface RouteInfo {
+    route: Manki.Route,
+    junkai: boolean,
+};
 
 interface RoutePoint {
     lat: number,
@@ -26,13 +32,15 @@ function FirstForm({
     const userId = React.useContext(App.userIdContext).userId as Manki.UserId;
     const map = React.useContext(Main.mapRefContext).mapRef.current;
     const passableCircles = [] as L.Circle[];
-
+    const { shareRef } = React.useContext(Form.phaseContext);
 
     function next(route: Manki.Route) {
-        // TODO 第二状態にルートを渡す
         passableCircles.forEach(circle => circle.removeFrom(map));
         passableCircles.length = 0;
         routePoints.forEach(route => route.forEach(point => point.marker.removeFrom(map)));
+        const patrolElem = document.getElementById('patrol') as HTMLInputElement;
+        const junkai = patrolElem.checked;
+        shareRef.current = { route, junkai } as RouteInfo;
         setPhase('2');
     }
 
