@@ -1,11 +1,12 @@
 import React from 'react';
 import * as App from 'App';
 import * as Main from 'Main';
+import Swal from 'sweetalert2';
 import * as Manki from 'api/manki';
 import * as Form from 'components/Form';
 import * as FirstForm from './FirstForm';
 import generateIcon from 'util/icon';
-import L, { map } from 'leaflet';
+import L from 'leaflet';
 import './forms.css';
 
 interface Props {
@@ -20,12 +21,28 @@ function SecondForm({
     const routeInfo = React.useContext(Form.phaseContext).shareRef.current as FirstForm.RouteInfo;
     const markers = [] as L.Marker[];
     let routeLine = L.polyline([]) as L.Polyline;
+    
+    function cleanUp() {
+        markers.forEach(marker => marker.removeFrom(map));
+        routeLine.removeFrom(map);
+    }
 
     function editRoute() {
+        cleanUp();
         setPhase('1');
     }
 
-    function executeRoute() {
+    async function executeRoute() {
+        const result = await Manki.execRoute(userId, routeInfo.route, routeInfo.junkai);
+        if (result instanceof Error) {
+            Swal.fire({
+                titleText: '経路の実行に失敗しました',
+                text: result.message,
+                icon: 'error',
+            });
+            return false;
+        }
+        cleanUp();
         setPhase('3');
     }
 
@@ -44,6 +61,33 @@ function SecondForm({
         }
         routeLine = L.polyline(routeInfo.route, { weight: 10, color: 'green' });
         routeLine.addTo(map);
+    }
+
+    async function saveRoute() {
+        const routeNameElem = document.getElementById('routeName') as HTMLInputElement;
+        const routeName = routeNameElem.value;
+        if (routeName === '') {
+            Swal.fire({
+                titleText: 'エラー',
+                text: '経路の名前を入力してください',
+                icon: 'error',
+            });
+            return false;
+        }
+        const result = await Manki.saveRoute(userId, routeName, routeInfo.route, routeInfo.junkai);
+        if (result instanceof Error) {
+            Swal.fire({
+                titleText: '経路の保存に失敗しました',
+                text: result.message,
+                icon: 'error',
+            });
+            return false;
+        }
+        Swal.fire({
+            titleText: '経路を保存しました', 
+            text: routeName + 'という名前で経路を保存しました。',
+            icon: 'success',
+        });
     }
 
     const didLogRef = React.useRef(false);
@@ -70,7 +114,7 @@ function SecondForm({
                     保存名:
                     <input type="text" id="routeName" />
                 </label>
-                <button id="saveRoute">保存する</button>
+                <button onClick={saveRoute}>保存する</button>
             </fieldset>
         </form>
     );
