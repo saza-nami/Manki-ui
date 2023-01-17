@@ -38,6 +38,7 @@ function FirstForm({
         passableCircles.forEach(circle => circle.removeFrom(map));
         passableCircles.length = 0;
         routePoints.forEach(route => route.forEach(point => point.marker.removeFrom(map)));
+        map.off('click', appendPoint);
         const patrolElem = document.getElementById('patrol') as HTMLInputElement;
         const junkai = patrolElem.checked;
         shareRef.current = { route, junkai } as RouteInfo;
