@@ -3,6 +3,12 @@ import FirstForm from "./forms/FirstForm";
 import SecondForm from "./forms/SecondForm";
 import ThirdForm from "./forms/ThirdForm";
 
+const share: any = undefined;
+
+export const phaseContext = React.createContext({} as {
+    shareRef: React.MutableRefObject<any>,
+});
+
 interface Props {
     phase: string,
     setPhase: React.Dispatch<React.SetStateAction<string>>,
@@ -12,28 +18,19 @@ function Form({
     phase,
     setPhase,
 }: Props) {
-    switch (phase) {
-        case '0':
-            return (
-                <React.Fragment />
-            );
-        case '1':
-            return (
-                <FirstForm setPhase={setPhase} />
-            );
-        case '2':
-            return (
-                <SecondForm setPhase={setPhase} />
-            );
-        case '3':
-            return (
-                <ThirdForm setPhase={setPhase} />
-            );
-        default:
-            return (
-                <React.Fragment />
-            );
-    }
+    const shareRef = React.useRef(share);
+    const phaseTab = {
+        '0': <React.Fragment />,
+        '1': <FirstForm setPhase={setPhase} />,
+        '2': <SecondForm setPhase={setPhase} />,
+        '3': <ThirdForm setPhase={setPhase} />,
+    } as { [key: string]: JSX.Element };
+
+    return (
+        <phaseContext.Provider value={{ shareRef }}>
+            { phaseTab[phase] || <React.Fragment /> }
+        </phaseContext.Provider>
+    );
 }
 
 export default Form;
