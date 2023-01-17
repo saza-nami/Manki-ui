@@ -47,11 +47,17 @@ function FirstForm({
             });
             return;
         }
-        passableInfo.forEach(
-            elem => passableCircles.push(
-                L.circle(elem.position, { radius: elem.radius }).addTo(map)
-            )
-        );
+        if (passableInfo.length === 0)
+            return;
+
+        const bounds = L.latLngBounds(passableInfo[0].position, passableInfo[0].position);
+        passableInfo.forEach(elem => {
+            const circle = L.circle(elem.position, { radius: elem.radius });
+            circle.addTo(map);
+            passableCircles.push(circle);
+            bounds.extend(circle.getBounds());
+        });
+        map.fitBounds(bounds);
     }
 
     // 保存済み経路の取得
