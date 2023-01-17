@@ -153,7 +153,7 @@ function FirstForm({
                     && routePoints.at(-1)?.length !== 1
                     && routePoints.at(-1)?.at(-1)?.mode === 'stop')
                 routePoints.push([]);
-            routePoints.at(-1)?.push(point); 
+            routePoints.at(-1)?.push(point);
         });
     }
 
@@ -167,7 +167,7 @@ function FirstForm({
             Swal.fire({
                 titleText: 'エラー',
                 text: '最初の地点は停留所である必要があります。',
-                icon: 'error', 
+                icon: 'error',
             });
             return false;
         }
@@ -194,7 +194,7 @@ function FirstForm({
             Swal.fire({
                 titleText: 'エラー',
                 text: '一つ以上の停留所を設定する必要があります。',
-                icon: 'error', 
+                icon: 'error',
             });
             return false;
         }
@@ -206,7 +206,7 @@ function FirstForm({
                 text: '非巡回経路の終点は停留所である必要があります。',
                 icon: 'error',
             });
-            return false; 
+            return false;
         }
         const rpData = routePoints.map(r => r.map(e => ({ ...e } as RoutePoint)));
         if (rpData.length === 1 || patrol)

@@ -65,7 +65,7 @@ function ThirdForm({
             routeLine.addTo(map);
             const nextStopElem = document.getElementById('nextStop') as HTMLButtonElement;
             nextStopElem.disabled = !result.progress.arrival;
-            if (result.progress.finish) 
+            if (result.progress.finish)
                 nextStopElem.disabled = true;
             if (result.progress.arrival && !arrivalNotified) {
                 arrivalNotified = true;
@@ -125,7 +125,7 @@ function ThirdForm({
         if (!didLogRef.current) {
             didLogRef.current = true;
             update();
-        } 
+        }
     }, []);
 
     return (

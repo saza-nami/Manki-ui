@@ -6,7 +6,7 @@ export type { UserId } from './api';
 
 /**
  * 新しいユーザ識別子を発行する。
- * 
+ *
  * @return 成功したときはユーザ識別子、
  *         さもなければ UI に表示できるメッセージを含むエラーインスタンス
  */
@@ -33,7 +33,7 @@ export async function createUser() {
 
 /**
  * ユーザの手続きを終了する。
- * 
+ *
  * @return 成功したときは true、
  *         さもなければ UI に表示できるメッセージを含むエラーインスタンス
  */
@@ -58,7 +58,7 @@ export async function terminate(userId: Api.UserId) {
 
 /**
  * ユーザに紐付けられている経路の実行をキャンセルする。
- * 
+ *
  * @param userId ユーザ識別子
  * @return 成功したときは true、
  *         さもなければ UI に表示できるメッセージを含むエラーインスタンス
@@ -84,7 +84,7 @@ export async function endRoute(userId: Api.UserId) {
 
 /**
  * 停留所に停まっている車を次の停留所に進ませる。
- * 
+ *
  * @param userId ユーザ識別子
  * @return 成功したときは true、
  *         さもなければ UI に表示できるメッセージを含むエラーインスタンス
@@ -112,7 +112,7 @@ export async function proceedRoute(userId: Api.UserId) {
 
 /**
  * ユーザが新しい経路を実行可能か調べる。
- * 
+ *
  * @param userId ユーザ識別子
  * @return 成功したとき（実行可能なとき）は true、
  *         さもなければ UI に表示できるメッセージを含むエラーインスタンス
@@ -153,7 +153,7 @@ export type { PassableName } from './api.types';
 
 /**
  * 全ての保存済み経路名情報を取得する。
- * 
+ *
  * @param userId ユーザ識別子
  * @return 成功したときは経路名情報の配列、
  *         さもなければ UI に表示できるメッセージを含むエラーインスタンス
@@ -193,7 +193,7 @@ export interface routeInfo {
 
 /**
  * 保存済みの経路を取得する。
- * 
+ *
  * @param userId ユーザ識別子
  * @param routeName 経路名
  * @return 成功したときは保存済みの経路の情報、
@@ -231,7 +231,7 @@ export type { PassableInfo } from './api';
 
 /**
  * 通行可能領域情報を取得する。
- * 
+ *
  * @param userId
  * @return 成功したときは通行可能領域情報の配列、
  *         さもなければ UI に表示できるメッセージを含むエラーインスタンス
@@ -257,7 +257,7 @@ export async function reqPassable(userId: Api.UserId) {
 
 /**
  * ルート（停留所-停留所の道程）の集まりから経路を作成する。
- * 
+ *
  * @param userId ユーザ識別子
  * @param subRoutes ルートの集まり
  * @return 成功したときは生成された経路、
@@ -302,7 +302,7 @@ export async function generateRoute(userId: Api.UserId, subRoutes: Api.SubRoute[
 
 /**
  * 新しい経路の実行を予約する。
- * 
+ *
  * @param userId ユーザ識別子
  * @param route 実行する経路
  * @param junkai 巡回経路のとき真
@@ -334,7 +334,7 @@ export async function execRoute(userId: Api.UserId, route: Api.Route, junkai: bo
 
 /**
  * 経路に名前を付けて保存する。
- * 
+ *
  * @param userId ユーザ識別子
  * @param routeName 経路に付ける名前
  * @param route 保存する経路
@@ -401,7 +401,7 @@ export interface CarStat {
 
 /**
  * ユーザに紐付いている経路の実行状況や車の情報を取得する。
- * 
+ *
  * @param userId ユーザ識別子
  * @return 成功したときは経路と車に関する情報、
  *         さもなければ UI に表示できるメッセージを含むエラーインスタンス

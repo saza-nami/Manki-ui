@@ -21,7 +21,7 @@ function SecondForm({
     const routeInfo = React.useContext(Form.phaseContext).shareRef.current as FirstForm.RouteInfo;
     const markers = [] as L.Marker[];
     let routeLine = L.polyline([]) as L.Polyline;
-    
+
     function cleanUp() {
         markers.forEach(marker => marker.removeFrom(map));
         routeLine.removeFrom(map);
@@ -84,7 +84,7 @@ function SecondForm({
             return false;
         }
         Swal.fire({
-            titleText: '経路を保存しました', 
+            titleText: '経路を保存しました',
             text: routeName + 'という名前で経路を保存しました。',
             icon: 'success',
         });

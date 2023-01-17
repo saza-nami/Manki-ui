@@ -10,7 +10,7 @@ export const userIdContext = React.createContext({} as {
 function App() {
   const [phase, setPhase] = React.useState<string>('0');
   const [userId, setUserId] = React.useState<Manki.UserId>();
-  
+
   async function onLoad() {
     const userId = await Manki.createUser();
     if (userId instanceof Error) {
@@ -30,7 +30,7 @@ function App() {
     setUserId(userId);
     setPhase('1');
   }
-  
+
   const didLogRef = React.useRef(false);
   React.useEffect(() => {
     if (!didLogRef.current) {

@@ -20,7 +20,7 @@ function Main({
     const mapRef = React.useRef() as React.MutableRefObject<L.Map>;
 
     return (
-        <mapRefContext.Provider value={{ mapRef }}>        
+        <mapRefContext.Provider value={{ mapRef }}>
             <div className="main-area">
                 <Form phase={phase} setPhase={setPhase} />
                 <Map mapRef={mapRef} />
