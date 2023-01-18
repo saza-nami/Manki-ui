@@ -23,7 +23,7 @@ function ThirdForm({
     let carMarker = undefined as L.Marker | undefined;
     let canceled = false;
 
-    async function cancelRoute() {
+    const cancelRoute: React.MouseEventHandler<HTMLButtonElement> = async function (e) {
         const confirm = await Swal.fire({
             titleText: '確認',
             text: '経路実行をキャンセルしますか？',
@@ -32,7 +32,10 @@ function ThirdForm({
         });
         if (!confirm.isConfirmed)
             return false;
+        const target = e.target as HTMLButtonElement;
+        target.disabled = true;
         const result = await Manki.endRoute(userId);
+        target.disabled = false;
         if (result instanceof Error) {
             Swal.fire({
                 titleText: 'エラー',
@@ -115,7 +118,7 @@ function ThirdForm({
         timerId = setTimeout(update, 1000);
     }
 
-    async function nextStop() {
+    const nextStop: React.MouseEventHandler<HTMLButtonElement> = async function (e) {
         const confirm = await Swal.fire({
             titleText: '確認',
             text: '車を次の停留所に進ませますか？',
@@ -124,7 +127,10 @@ function ThirdForm({
         });
         if (!confirm.isConfirmed)
             return false; // Nothing to do
+        const target = e.target as HTMLButtonElement;
+        target.disabled = true;
         const result = await Manki.proceedRoute(userId);
+        target.disabled = false;
         if (result instanceof Error) {
             Swal.fire({
                 titleText: '車を進ませることができません',

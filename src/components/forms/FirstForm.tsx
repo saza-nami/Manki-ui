@@ -90,10 +90,13 @@ function FirstForm({
     }
 
     // 呼び出すボタンが押されたときの handler
-    async function reqRoute() {
+    const reqRoute: React.MouseEventHandler<HTMLButtonElement> = async function (e) {
         const routeNameElem = document.getElementById('routeName') as HTMLSelectElement;
-        const routeName = routeNameElem.value;
+        const routeName = routeNameElem.value
+        const target = e.target as HTMLButtonElement;
+        target.disabled = true;
         const routeInfo = await Manki.reqRoute(userId, routeName);
+        target.disabled = false;
         if (routeInfo instanceof Error) {
             Swal.fire({
                 titleText: '保存済み経路の取得に失敗しました',
@@ -192,7 +195,7 @@ function FirstForm({
     }
 
     // 経路探索ボタンをクリックしたときのハンドラ
-    async function searchRoute() {
+    const searchRoute: React.MouseEventHandler<HTMLButtonElement> = async function (e) {
         if (routePoints.length === 0) {
             Swal.fire({
                 titleText: 'エラー',
@@ -231,7 +234,10 @@ function FirstForm({
             allowEnterKey: false,
             showConfirmButton: false,
         });
+        const target = e.target as HTMLButtonElement;
+        target.disabled = true;
         const route = await Manki.generateRoute(userId, pointsv);
+        target.disabled = false;
         if (route instanceof Error) {
             Swal.fire({
                 titleText: 'エラー',
@@ -267,7 +273,7 @@ function FirstForm({
                     <input type="radio" name="mode" value="thru" />
                     中継点
                 </label>
-                <button id="generateRoute" onClick={searchRoute}>経路探索</button>
+                <button onClick={searchRoute}>経路探索</button>
                 <label>
                     <input type="checkbox" id="patrol" value="patrol" />
                     巡回経路

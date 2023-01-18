@@ -32,8 +32,11 @@ function SecondForm({
         setPhase('1');
     }
 
-    async function executeRoute() {
+    const executeRoute: React.MouseEventHandler<HTMLButtonElement> = async function (e) {
+        const target = e.target as HTMLButtonElement;
+        target.disabled = true;
         const result = await Manki.execRoute(userId, routeInfo.route, routeInfo.junkai);
+        target.disabled = false;
         if (result instanceof Error) {
             Swal.fire({
                 titleText: '経路の実行に失敗しました',
@@ -63,7 +66,7 @@ function SecondForm({
         routeLine.addTo(map);
     }
 
-    async function saveRoute() {
+    const saveRoute:React.MouseEventHandler<HTMLButtonElement> = async function (e) {
         const routeNameElem = document.getElementById('routeName') as HTMLInputElement;
         const routeName = routeNameElem.value;
         if (routeName === '') {
@@ -74,7 +77,10 @@ function SecondForm({
             });
             return false;
         }
+        const target = e.target as HTMLButtonElement;
+        target.disabled = true;
         const result = await Manki.saveRoute(userId, routeName, routeInfo.route, routeInfo.junkai);
+        target.disabled = false;
         if (result instanceof Error) {
             Swal.fire({
                 titleText: '経路の保存に失敗しました',
