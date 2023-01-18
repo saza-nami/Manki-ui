@@ -170,7 +170,7 @@ export async function routeName(userId: Api.UserId) {
                 default:
                     return new Error('API の呼び出しに失敗しました。');
             }
-        return result.passableName as Api.PassableName[];
+        return result.passableNames as Api.PassableName[];
     } catch (err) {
         console.error('routeName:', err);
         return new Error('API サーバとの通信に失敗しました。');

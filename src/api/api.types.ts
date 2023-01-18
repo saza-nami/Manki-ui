@@ -71,7 +71,7 @@ export interface PassableName {
  */
 export interface RouteNameResult extends ApiResult {
   /** 保存済み経路情報のリスト */
-  passableName?: PassableName[];
+  passableNames?: PassableName[];
 }
 
 /**
