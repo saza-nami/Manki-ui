@@ -103,6 +103,7 @@ function ThirdForm({
             titleText: '確認',
             text: '車を次の停留所に進ませますか？',
             icon: 'question',
+            showCancelButton: true,
         });
         if (!confirm.isConfirmed)
             return false; // Nothing to do
@@ -124,6 +125,8 @@ function ThirdForm({
     React.useEffect(() => {
         if (!didLogRef.current) {
             didLogRef.current = true;
+            const nextStopElem = document.getElementById('nextStop') as HTMLButtonElement;
+            nextStopElem.disabled = true;
             update();
         }
     }, []);
@@ -133,7 +136,7 @@ function ThirdForm({
             <fieldset>
                 <legend>経路実行を制御する</legend>
                 <button id="cancelRoute" onClick={cancelRoute}>経路実行をキャンセルする</button>
-                <button id="nextStop" onClick={nextStop} disabled>次の停留所へ移動する</button>
+                <button id="nextStop" onClick={nextStop}>次の停留所へ移動する</button>
             </fieldset>
         </form>
     );
