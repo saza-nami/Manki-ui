@@ -74,12 +74,12 @@ function ThirdForm({
         cleanUp();
         if (result.progress) {
             result.progress.stops.forEach((position, i, stops) => {
-                if (stops.length !== i + 1) {
-                    const icon = generateIcon('blue', String(i+1));
-                    const marker = L.marker(position, { icon });
-                    marker.addTo(map);
-                    markers.push(marker);
-                }
+                if (result.progress?.junkai && stops.length === i + 1)
+                    return;
+                const icon = generateIcon('blue', String(i + 1));
+                const marker = L.marker(position, { icon });
+                marker.addTo(map);
+                markers.push(marker);
             });
             routeLine = L.polyline(result.progress.route, { weight: 10, color: 'green' });
             routeLine.addTo(map);

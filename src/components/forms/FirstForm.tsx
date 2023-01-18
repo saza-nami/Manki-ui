@@ -34,13 +34,14 @@ function FirstForm({
     const passableCircles = [] as L.Circle[];
     const { shareRef } = React.useContext(Form.phaseContext);
 
-    function next(route: Manki.Route) {
+    function next(route: Manki.Route, junkai?: boolean) {
         passableCircles.forEach(circle => circle.removeFrom(map));
         passableCircles.length = 0;
         routePoints.forEach(route => route.forEach(point => point.marker.removeFrom(map)));
         map.off('click', appendPoint);
         const patrolElem = document.getElementById('patrol') as HTMLInputElement;
-        const junkai = patrolElem.checked;
+        if (junkai === undefined)
+            junkai = patrolElem.checked;
         shareRef.current = { route, junkai } as RouteInfo;
         setPhase('2');
     }
@@ -110,7 +111,7 @@ function FirstForm({
             });
             return false;
         }
-        next(routeInfo.route);
+        next(routeInfo.route, routeInfo.junkai);
     }
 
     // generateIcon の引数を生成する愚かな処理
