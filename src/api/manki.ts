@@ -278,7 +278,7 @@ export async function generateRoute(userId: Api.UserId, subRoutes: Api.SubRoute[
                 return route;
             }, [] as Api.Route);
         } catch (msg) {
-            const message = (msg as string).replaceAll(/\d*/g, 'XXX');
+            const message = (msg as string).replaceAll(/\d+/g, 'XXX');
             switch (message) {
                 case 'Invalid request.':
                     return new Error('不正な API リクエストが発生しました。');
