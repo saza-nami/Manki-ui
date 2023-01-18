@@ -284,7 +284,7 @@ function FirstForm({
                 <label>
                     経路名:
                     <select id="routeName">
-                        <option selected>--- 選択してください ---</option>
+                        <option selected disabled>--- 選択してください ---</option>
                     </select>
                 </label>
                 <button onClick={reqRoute}>呼び出す</button>
