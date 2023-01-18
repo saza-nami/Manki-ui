@@ -71,6 +71,10 @@ function FirstForm({
 
     // 保存済み経路の取得
     async function routeName() {
+        const reqRouteElem = document.getElementById('reqRoute') as HTMLButtonElement;
+        reqRouteElem.disabled = false;
+        const routeNameElem = document.getElementById('routeName') as HTMLSelectElement;
+        routeNameElem.disabled = false;
         const passableName = await Manki.routeName(userId);
         if (passableName instanceof Error) {
             Swal.fire({
@@ -78,9 +82,10 @@ function FirstForm({
                 text: passableName.message + '保存済み経路は利用できません。',
                 icon: 'error',
             });
+            reqRouteElem.disabled = true;
+            routeNameElem.disabled = true;
             return;
         }
-        const routeNameElem = document.getElementById('routeName') as HTMLSelectElement;
         passableName.forEach(elem => {
             const opt = document.createElement('option');
             opt.disabled = !elem.available;
@@ -287,7 +292,7 @@ function FirstForm({
                         <option selected disabled>--- 選択してください ---</option>
                     </select>
                 </label>
-                <button onClick={reqRoute}>呼び出す</button>
+                <button id="reqRoute" onClick={reqRoute}>呼び出す</button>
             </fieldset>
         </form>
     );
