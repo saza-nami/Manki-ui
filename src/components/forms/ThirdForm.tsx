@@ -23,7 +23,24 @@ function ThirdForm({
     let carMarker = undefined as L.Marker | undefined;
     let canceled = false;
 
-    function cancelRoute() {
+    async function cancelRoute() {
+        const confirm = await Swal.fire({
+            titleText: '確認',
+            text: '経路実行をキャンセルしますか？',
+            icon: 'question',
+            showCancelButton: true,
+        });
+        if (!confirm.isConfirmed)
+            return false;
+        const result = await Manki.endRoute(userId);
+        if (result instanceof Error) {
+            Swal.fire({
+                titleText: 'エラー',
+                text: result.message,
+                icon: 'error',
+            });
+            return false;
+        }
         canceled = true;
         cleanUp();
         setPhase('1');
