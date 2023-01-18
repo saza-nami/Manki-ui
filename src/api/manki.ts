@@ -381,6 +381,8 @@ export interface CarStat {
         route: Api.Route;
         /** 実行中の経路に含まれる停留所 */
         stops: Api.Position[];
+        /** 実行中の経路が巡回経路のとき真 */
+        junkai: boolean;
         /** 車が停留所にいるとき真 */
         arrival: boolean;
         /** 車が目的地にいるとき真 */
@@ -423,6 +425,7 @@ export async function carStat(userId: Api.UserId) {
             ret.progress = {
                 route: result.route as Api.Route,
                 stops: result.dest as Api.Position[],
+                junkai: result.junkai as boolean,
                 arrival: result.arrival as boolean,
                 finish: result.finish as boolean,
                 arrange: result.arrange as boolean,

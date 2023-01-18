@@ -197,6 +197,8 @@ export interface MonitorCarResult extends ApiResult {
   route?: Route;
   /** 実行している経路に含まれる停留所のリスト */
   dest?: Position[];
+  /** 実行している経路が巡回経路のときに真 */
+  junkai?: boolean;
   /** 停留所で停まっているときに真 */
   arrival?: boolean;
   /** 目的地に停まっているときに真 */

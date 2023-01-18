@@ -725,6 +725,7 @@ export function monitorCar(userId: ApiTypes.UserId) {
           lng: 139.7322750091553,
         },
       ];
+      result.junkai = false;
       result.arrival = false;
       result.finish = false;
       result.arrange = false;
